@@ -22,9 +22,12 @@ io.on("connection", (socket) => {
 	});
 
 	//Listener to update Location of Entity
-	socket.on("update-location", (projectId, entityId, location) => {
-		const room = projectId.toLowerCase().concat(entityId.toLowerCase());
-		//emits entity-new-location event to room (projectId-entityId);
+	//TODO ADD Autentication....
+	socket.on("update-location", (projectId,entityId,location) => {    
+        //emits entity-new-location event to room (projectId-entityId);
+        const room = projectId.toLowerCase().concat(entityId.toLowerCase());
+        console.log("updating location of ");
+        console.log(entityId)
 		socket.broadcast.to(room).emit("entity-new-location", location);
 	});
 
