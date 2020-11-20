@@ -1,0 +1,24 @@
+{
+  "name": "tracking-app-socket-server",
+  "version": "1.0.0",
+  "description": "This is a Server that manages the sockets for  real Time App updates",
+  "main": "app.js",
+  "scripts": {
+    "start":"node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.lrz.de:software-lab-2020/tracking-app-socket-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.0.3"
+  }
+}
