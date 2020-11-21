@@ -42,10 +42,11 @@ Once the client has connected to the server and joined a room, it can listen to 
 
 #### Output
 JSON object with the following properties:
+
 | Field | Type       | Description |
 |-------|------------|-------------|
-| entityId | String  | entity that changed location|
-| location | JSON    | Coordinates of location of Item. {x,y,z}|
+| entityId | String  | entity that changed location   |
+| location | JSON    | Coordinates of location of Item. {x,y,z}   |
 
 #### Example of Setting up Client Listeners:
 ```javascript
