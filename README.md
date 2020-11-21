@@ -51,7 +51,7 @@ JSON object with the following properties:
 #### Example of Setting up Client Listeners:
 ```javascript
 //adds a listener for changes of entity.
-socket.on(`entity-new-location`, (entityId,location) => {
+socket.on("entity-new-location", (entityId,location) => {
    // callback function Here....
 });
 ```
