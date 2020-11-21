@@ -3,21 +3,26 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const io = require("socket.io")(server);
+const fs = require("fs");
 const cors = require("cors");
 
 const port = process.env.PORT || 4000;
 
 app.use(cors());
-//For Showing if Server is Up
-let count = 0;
-app.get("/", (req, res) => {
-	res.send("<h1>Socket Server up and Running...</h1><h2>There are " + count + " clients connected to the server</h2>");
-});
 
+//--------------Convert Readme.md to hmtl and host it
+const showdown = require("showdown");
+const converter = new showdown.Converter();
+converter.setOption("tables", true);
+app.get("/", function (req, res) {
+	fs.readFile(__dirname + "/README.md", "utf-8", function (err, data) {
+		if (err) throw err;
+		res.send(converter.makeHtml(data));
+	});
+});
 //setup socket  End Points
 io.on("connection", (socket) => {
 	console.log("Client Connected");
-	count++;
 
 	//Listener for joining room
 	socket.on("join", (projectId, entityId) => {
@@ -43,9 +48,8 @@ io.on("connection", (socket) => {
 		console.log("Client left room", room);
 	});
 
-	io.on("disconnect", () => {
+	socket.on("disconnect", () => {
 		console.log("Client Disconnected");
-		count--;
 	});
 });
 
