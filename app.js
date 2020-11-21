@@ -9,17 +9,15 @@ const port = process.env.PORT || 4000;
 
 app.use(cors());
 //For Showing if Server is Up
-let count=0;
+let count = 0;
 app.get("/", (req, res) => {
-	res.send("<h1>Socket Server up and Running...</h1><<h2>There are :"+count +"connections to the server</h2>");
+	res.send("<h1>Socket Server up and Running...</h1><h2>There are " + count + " clients connected to the server</h2>");
 });
-
-
 
 //setup socket  End Points
 io.on("connection", (socket) => {
-    console.log("Client Connected");
-    count++;
+	console.log("Client Connected");
+	count++;
 
 	//Listener for joining room
 	socket.on("join", (projectId, entityId) => {
@@ -46,8 +44,12 @@ io.on("connection", (socket) => {
 	});
 
 	io.on("disconnect", () => {
-        console.log("Client Disconnected");
-        count--;
+		console.log("Client Disconnected");
+		count--;
 	});
 });
 
+//start server
+server.listen(port, () => {
+	console.log("Listening on port " + port);
+});
